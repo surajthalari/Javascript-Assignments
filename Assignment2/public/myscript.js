@@ -409,11 +409,64 @@ function toggler (togglerId) {
     toggleElement.className = 'arrow up'
     toggleElement.style.marginRight = '1cm'
     document.getElementById(togglerId).appendChild(toggleElement)
+    sortColumns(togglerId)
   } else {
     document.getElementById(togglerId).removeChild(document.getElementById(togglerId).childNodes[0])
     var toggleElementOne = document.createElement('i')
     toggleElementOne.className = 'arrow down'
     toggleElementOne.style.marginRight = '1cm'
     document.getElementById(togglerId).append(toggleElementOne)
+    displayTasks()
+  }
+}
+
+function sortColumns (togglerId) {
+  debugger
+  console.log(togglerId)
+  if (togglerId === 'sortid1' || togglerId === 'sortid4' || togglerId === 'sortid5') {
+    sortSelect()
+  } else if (togglerId === 'sortid2') {
+    sortTask()
+  } else if (togglerId === 'sortid3') {
+    sortTag()
+  }
+}
+
+function sortSelect () {
+  deleteTable()
+  var sortArray = []
+  for (var index = 0; index < taskDetailsArray.length; index++) {
+    if (taskDetailsArray[index].selectValue === 'completed') {
+      sortArray.push(index)
+    }
+  }
+  for (var indexOne = 0; indexOne < taskDetailsArray.length; indexOne++) {
+    if (taskDetailsArray[indexOne].selectValue === 'pending') {
+      sortArray.push(indexOne)
+    }
+  }
+  addRowsToTable(sortArray)
+}
+
+function sortTask () {
+  debugger
+  var sortArray = []
+  var DuplicateTaskDetails = []
+  DuplicateTaskDetails.sort(function compare (a, b) {
+    // Use toUpperCase() to ignore character casing
+    const genreA = a.taskValue.toUpperCase()
+    const genreB = b.taskValue.toUpperCase()
+    let comparison = 0
+    if (genreA > genreB) {
+      comparison = 1
+    } else if (genreA < genreB) {
+      comparison = -1
+    }
+    return comparison
+  })
+  for (var index = 0; index < taskDetailsArray.length; index++) {
+    taskDetailsArray.filter(obj => {
+      return obj.id === DuplicateTaskDetails[index].id
+    })
   }
 }
