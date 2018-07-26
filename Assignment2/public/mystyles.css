@@ -1,0 +1,97 @@
+        
+
+        #parahead {
+            font-weight: bolder;
+            padding-left: 2cm
+        }
+
+        #Pending {
+            padding-left: 1cm
+        }
+
+        #Completed {
+            padding-left: 2cm
+        }
+
+        #Progress {
+            padding-left: 2cm
+        }
+
+        #taskname {
+            padding-right: 2cm
+        }
+
+        #status {
+            padding-right: 2.8cm
+        }
+
+        #tagname {
+            padding-right: 2cm
+        }
+
+        #tag {
+            width: 4cm
+        }
+
+        #tagDivId {
+            padding-left: 4.1cm
+        }
+
+        #savebutton {
+            margin-left: 7.8cm
+        }
+        
+        #columnMiddle{
+            border-style: groove;
+            width: 380px
+        }
+
+        #myInput {
+            margin-right: 30cm;
+            background-image: url('/images/image.jpg')
+        }
+
+        #SP {
+            margin-right: 5cm
+        }
+
+        #CC {
+            color: blue;
+            text-decoration: underline;
+            font-weight: bold
+        }
+
+        #table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #addbutton{
+            margin-left: -4px
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+
+        }
+
+        tr:nth-child(even) {background-color: #f2f2f2;}
+
+        i {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+        }
+
+        .down {
+            transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+        }
+
+        
+   

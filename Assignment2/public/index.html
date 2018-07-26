@@ -1,0 +1,106 @@
+<html><head>
+        <link rel="stylesheet" type="text/css" href="mystyles.css">
+        <script type="text/javascript" src="myscript.js"></script>
+        <title>
+            load demo
+        </title>
+    </head>
+    
+    <body>
+        <div>
+            <p id="parahead">todo</p>
+        </div>
+        <div>
+            <hr>
+        </div>
+        <div>
+            <span id="Pending">Pending Tasks: 0</span>
+            <span id="Completed">Completed Tasks: 0</span>
+            <span id="Progress">Progress: 0</span>
+        </div>
+        <div>
+            <hr>
+        </div>
+            <div id="columnMiddle" style="margin-left:  auto;margin-right:  auto;margin-bottom: 40px;margin-top:  40px;">
+                <form onsubmit="return saveFormMethod()" id="formid">
+                    <div style="padding-top: 20px;padding-left: 20px;padding-right: 20px">
+                        <span id="taskname">
+                            Task Name:
+                        </span>
+                        <input type="text" name="taskname" id="taskv" placeholder="task name">
+                    </div>
+                    <br>
+                    <div style="padding-left: 20px;padding-right: 20px">
+                        <span id="status">
+                            Status:
+                        </span>
+                        <select id="sel">
+                            <option value="pending">Pending</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div style="padding-left: 20px;padding-right: 20px">
+                        <span id="tagname">
+                            Task Name:
+                        </span>
+                        <input type="text" id="tag" name="tag" placeholder="tag name">
+                        <button id="addbutton" type="button" onclick="addTag()">+</button>
+                    </div>
+                    <br>
+                    <div id="tagDivId"></div>
+                    <div style="padding-left: 20px;padding-right: 20px">
+                        <button id="savebutton" type="submit">Save</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+            <div style="
+        width: 100%;
+    ">
+                <div id="searchDiv" style="
+    ">
+                    <input style="
+    background-image: url('/images/images.jpeg');
+    background-size: 20px;
+    background-position: right;
+    background-repeat:  no-repeat;
+" oninput="search()" placeholder="Search.." id="myInput">
+                </div>
+                
+                <div style="
+        float:  right;
+    ">
+    
+    <span id="showPendingDiv" style="/* float:  right; */">
+                    <input type="checkbox" name="vehicle" id="checkSearch" onclick="showPending()">
+                    <span id="SP">
+                        Show Pending
+                    </span>
+                </span>
+    <span id="clearCompletedDiv" style="/* float:  right; */">
+                    <span id="CC" onclick="clearCompleted()">
+                        X Clear Completed
+                    </span>
+                </span>
+        
+    </div>
+                
+                   
+              </div>
+            <div>
+                <table id="table">
+                    <tbody><tr><th>
+                            <i class="arrow down" style="margin-right: 1cm"></i>Completed
+                        </th>
+                        <th>
+                            <i class="arrow down" style="margin-right: 1cm"></i>Name</th>
+                        <th>
+                            <i class="arrow down" style="margin-right: 1cm"></i>Tags</th>
+                        <th>
+                            <i class="arrow down" style="margin-right: 1cm"></i>Status</th>
+                        <th>
+                            <i class="arrow down" style="margin-right: 1cm"></i>Actions</th>
+                    </tr></tbody></table>
+            </div>
+    </body></html>
