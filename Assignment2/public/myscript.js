@@ -398,3 +398,22 @@ function calculations () {
     document.getElementById('Progress').innerHTML = 'Progress: ' + 0
   }
 }
+
+// toggles the arrows in the table
+function toggler (togglerId) {
+  debugger
+  var togglerClassValue = document.getElementById(togglerId).childNodes[0].className
+  if (togglerClassValue === 'arrow down') {
+    document.getElementById(togglerId).removeChild(document.getElementById(togglerId).childNodes[0])
+    var toggleElement = document.createElement('i')
+    toggleElement.className = 'arrow up'
+    toggleElement.style.marginRight = '1cm'
+    document.getElementById(togglerId).appendChild(toggleElement)
+  } else {
+    document.getElementById(togglerId).removeChild(document.getElementById(togglerId).childNodes[0])
+    var toggleElementOne = document.createElement('i')
+    toggleElementOne.className = 'arrow down'
+    toggleElementOne.style.marginRight = '1cm'
+    document.getElementById(togglerId).append(toggleElementOne)
+  }
+}
