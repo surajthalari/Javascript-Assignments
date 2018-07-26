@@ -53,7 +53,7 @@ function saveTaskJSON () {
 
 function addTag () {
   var enteredTag = document.getElementById('tag').value
-  if (enteredTag !== '') {
+  if (enteredTag !== '' && enteredTag.trim() !== '') {
     var tagBelow = document.getElementById('tagDivId')
     var addTagSpan = document.createElement('SPAN')
     addTagSpan.id = 'id:' + addedTagArray.length
@@ -105,18 +105,7 @@ function deleteTag (deleteTagVariable) {
 function saveFormMethod () {
   debugger
   if (editVariable) {
-    var xhttpget = new XMLHttpRequest()
-    xhttpget.open('GET', `http://localhost:3000/objects/${editVariable}`, true)
-    xhttpget.onreadystatechange = function () {
-      if (xhttpget.status === 404 && xhttpget.readyState === 4) {
-        editVariable = 0
-        flagJSONSave = 0
-        saveFormMethod()
-      } else if (xhttpget.status === 200) {
-        updateTask()
-      }
-    }
-    xhttpget.send(null)
+    updateTask()
   } else {
     var taskDetail = {}
     if (document.getElementById('taskv').value !== '' && document.getElementById('taskv').value.trim() !== '') {
@@ -219,10 +208,11 @@ function editTask (taskID) {
   while (editTaskDivId.firstChild) {
     editTaskDivId.removeChild(editTaskDivId.firstChild)
   }
+  debugger
   addedTagArray = []
   for (var index = 0; index < taskDetailsArray[taskID].tagValue.length; index++) {
     var enteredTag = taskDetailsArray[taskID].tagValue[index]
-    if (enteredTag !== '-') {
+    if (enteredTag !== '-' && enteredTag.trim() !== '') {
       var tagBelow = document.getElementById('tagDivId')
       var addTagSpan = document.createElement('SPAN')
       addTagSpan.id = 'id:' + addedTagArray.length
@@ -241,7 +231,7 @@ function editTask (taskID) {
       var spaceTwo = document.createElement('SPAN')
       var spaceTwoValue = document.createTextNode(' ')
       spaceTwo.appendChild(spaceTwoValue)
-      addTagSpan.appendChild(spaceTwo)
+      crossMark.appendChild(spaceTwo)
       crossMark.style.textDecoration
       crossMark.onclick = function () {
         deleteTag(this.id)
@@ -313,13 +303,13 @@ function search () {
     displayTasks()
   } else {
     for (var index = 0; index < taskDetailsArray.length; index++) {
-      if (taskDetailsArray[index].taskValue === searchValue) {
+      if (taskDetailsArray[index].taskValue.substring(0, searchValue.length) === searchValue) {
         searchArray.push(index)
-      } else if (taskDetailsArray[index].selectValue === searchValue) {
+      } else if (taskDetailsArray[index].selectValue.substring(0, searchValue.length) === searchValue) {
         searchArray.push(index)
       } else {
         for (var element = 0; element < taskDetailsArray[index].tagValue.length; element++) {
-          if (taskDetailsArray[index].tagValue[element] === searchValue) {
+          if (taskDetailsArray[index].tagValue[element].substring(0, searchValue.length) === searchValue) {
             searchArray.push(index)
           }
         }
