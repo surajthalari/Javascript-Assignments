@@ -449,13 +449,17 @@ function sortSelect () {
 }
 
 function sortTask () {
-  debugger
+  deleteTable()
   var sortArray = []
   var DuplicateTaskDetails = []
+  for (var index = 0; index < taskDetailsArray.length; index++) {
+    var temporaryObject = { indexValue: index, taskObject: taskDetailsArray[index] }
+    DuplicateTaskDetails.push(temporaryObject)
+  }
   DuplicateTaskDetails.sort(function compare (a, b) {
     // Use toUpperCase() to ignore character casing
-    const genreA = a.taskValue.toUpperCase()
-    const genreB = b.taskValue.toUpperCase()
+    const genreA = a.taskObject.taskValue.toUpperCase()
+    const genreB = b.taskObject.taskValue.toUpperCase()
     let comparison = 0
     if (genreA > genreB) {
       comparison = 1
@@ -464,9 +468,34 @@ function sortTask () {
     }
     return comparison
   })
-  for (var index = 0; index < taskDetailsArray.length; index++) {
-    taskDetailsArray.filter(obj => {
-      return obj.id === DuplicateTaskDetails[index].id
-    })
+  for (var indexOne = 0; indexOne < taskDetailsArray.length; indexOne++) {
+    sortArray.push(DuplicateTaskDetails[indexOne].indexValue)
   }
+  addRowsToTable(sortArray)
+}
+
+function sortTag () {
+  deleteTable()
+  var sortArray = []
+  var DuplicateTaskDetails = []
+  for (var index = 0; index < taskDetailsArray.length; index++) {
+    var temporaryObject = { indexValue: index, taskObject: taskDetailsArray[index] }
+    DuplicateTaskDetails.push(temporaryObject)
+  }
+  DuplicateTaskDetails.sort(function compare (a, b) {
+    // Use toUpperCase() to ignore character casing
+    const genreA = a.taskObject.tagValue.length
+    const genreB = b.taskObject.tagValue.length
+    let comparison = 0
+    if (genreA > genreB) {
+      comparison = 1
+    } else if (genreA < genreB) {
+      comparison = -1
+    }
+    return comparison
+  })
+  for (var indexOne = 0; indexOne < taskDetailsArray.length; indexOne++) {
+    sortArray.push(DuplicateTaskDetails[indexOne].indexValue)
+  }
+  addRowsToTable(sortArray)
 }
