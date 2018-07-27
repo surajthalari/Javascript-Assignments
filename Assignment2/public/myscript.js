@@ -429,7 +429,6 @@ function toggler (togglerId) {
 }
 
 function sortColumns (togglerId) {
-  console.log(togglerId)
   if (togglerId === 'sortid1' || togglerId === 'sortid4' || togglerId === 'sortid5') {
     sortSelect()
   } else if (togglerId === 'sortid2') {
@@ -501,6 +500,8 @@ function sortTag () {
     }
     return comparison
   })
+  var first = '-'
+  DuplicateTaskDetails.sort(function (a, b) { return a.taskObject.tagValue[0] === first ? -1 : b.taskObject.tagValue[0] === first ? 1 : 0 })
   for (var indexOne = 0; indexOne < taskDetailsArray.length; indexOne++) {
     sortArray.push(DuplicateTaskDetails[indexOne].indexValue)
   }
