@@ -31,7 +31,9 @@ function onLoad () {
           if (keyA > keyB) return 1
           return 0
         })
-        reloadID = taskDetailsArray[taskDetailsArray.length - 1].id + 1
+        if (taskDetailsArray.length !== 0) {
+          reloadID = taskDetailsArray[taskDetailsArray.length - 1].id + 1
+        }
         calculations()
         displayTasks()
       }
@@ -111,7 +113,11 @@ function saveFormMethod () {
       taskDetail.id = reloadID
       reloadID++
       taskDetail.taskValue = document.getElementById('taskv').value.trim()
-      taskDetail.selectValue = document.getElementById('sel').value
+      if (document.getElementById('sel').value === 'pending' || document.getElementById('sel').value === 'completed') {
+        taskDetail.selectValue = document.getElementById('sel').value
+      } else {
+        taskDetail.selectValue = 'pending'
+      }
       addedTagArray = addedTagArray.filter(function (element) {
         return element !== undefined
       })
@@ -261,7 +267,11 @@ function updateTask () {
   var taskDetailDuplicate = {}
   taskDetailDuplicate.taskValue = document.getElementById('taskv').value
   if (taskDetailDuplicate.taskValue !== '' && document.getElementById('taskv').value.trim() !== '') {
-    taskDetailDuplicate.selectValue = document.getElementById('sel').value.trim()
+    if (document.getElementById('sel').value === 'pending' || document.getElementById('sel').value === 'completed') {
+      taskDetailDuplicate.selectValue = document.getElementById('sel').value
+    } else {
+      taskDetailDuplicate.selectValue = 'pending'
+    }
     addedTagArray = addedTagArray.filter(function (element) {
       return element !== undefined
     })
