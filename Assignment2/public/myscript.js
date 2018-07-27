@@ -103,7 +103,6 @@ function deleteTag (deleteTagVariable) {
 // Is invoked when the save button is clicked.
 // this saves the task details in the table.
 function saveFormMethod () {
-  debugger
   if (editVariable) {
     updateTask()
   } else {
@@ -181,10 +180,21 @@ function addRowsToTable (arrayContainigRowIDs) {
     var deleteButton = document.createElement('BUTTON')
     deleteButton.onclick = function () {
       deleteRowInTable(this.parentNode.parentNode.id)
+      deleteEditManipulation(this.parentNode.parentNode.id)
     }
     var deleteButtonText = document.createTextNode('DELETE')
     deleteButton.appendChild(deleteButtonText)
     cellEditDelete.appendChild(deleteButton)
+  }
+}
+
+// After populating the edit task in form and then .
+// you delete the task,this method saves the populated task as .
+// new task instead of updating .
+function deleteEditManipulation (taskID) {
+  if (editObject === taskID) {
+    editVariable = 0
+    flagJSONSave = 0
   }
 }
 
@@ -208,7 +218,6 @@ function editTask (taskID) {
   while (editTaskDivId.firstChild) {
     editTaskDivId.removeChild(editTaskDivId.firstChild)
   }
-  debugger
   addedTagArray = []
   for (var index = 0; index < taskDetailsArray[taskID].tagValue.length; index++) {
     var enteredTag = taskDetailsArray[taskID].tagValue[index]
@@ -401,7 +410,6 @@ function calculations () {
 
 // toggles the arrows in the table
 function toggler (togglerId) {
-  debugger
   var togglerClassValue = document.getElementById(togglerId).childNodes[0].className
   if (togglerClassValue === 'arrow down') {
     document.getElementById(togglerId).removeChild(document.getElementById(togglerId).childNodes[0])
@@ -421,7 +429,6 @@ function toggler (togglerId) {
 }
 
 function sortColumns (togglerId) {
-  debugger
   console.log(togglerId)
   if (togglerId === 'sortid1' || togglerId === 'sortid4' || togglerId === 'sortid5') {
     sortSelect()
